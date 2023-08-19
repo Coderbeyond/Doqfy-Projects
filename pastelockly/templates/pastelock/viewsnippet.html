@@ -1,0 +1,13 @@
+{% block content %}
+    <h2>View Snippet</h2>
+
+    {% if decrypted_content %}
+        <pre>{{ decrypted_content }}</pre>
+    {% else %}
+        {{ key_form.non_field_errors }}
+        <form method="get">
+            {{ key_form.as_p }}
+            <button type="submit">View Content</button>
+        </form>
+    {% endif %}
+{% endblock %}

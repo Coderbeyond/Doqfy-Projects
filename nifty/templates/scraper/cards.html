@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NIFTY 50 Data</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        .company-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 500px;
+        }
+
+        .company-card h2 {
+            margin: 0;
+            color: #555;
+        }
+
+        .company-card p {
+            margin: 10px 0;
+            color: #777;
+        }
+
+        img.chart-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #777;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>NIFTY 50 Data</h1>
+    <div>
+        {% if company_data %}
+            {% for company in company_data %}
+            <div class="company-card">
+                <h2>{{ company.meta.companyName }}</h2>
+                <p>Symbol: {{ company.symbol }}</p>
+                <p>Last Price: {{ company.lastPrice }}</p>
+                <!-- Add more stock data here as needed -->
+
+                <img class="chart-image" src="{{ company.chartTodayPath }}" alt="Chart for Today">
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-data">No data available at the moment.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
